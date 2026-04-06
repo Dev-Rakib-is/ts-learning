@@ -84,3 +84,5 @@ const product = (typeProduct: productType[]): { name: string, discount: number }
 const result = product(allProduct);
 console.log(result);
 
+function identity<T>(arg: T): T { return arg; }
+const str = identity<string>("Rakib");

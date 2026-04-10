@@ -3,8 +3,8 @@ function bascis<t>(prams: t): t {
     return prams
 }
 
-const number = <number>(123);
-const names = <string>("Billal");
+const number = bascis<number>(123);
+const names = bascis<string>("Billal");
 
 
 console.log(names);
@@ -34,7 +34,10 @@ const response2: ApiResponse<number> = {
 
 
 function handleResponse<T>(response: ApiResponse<T>): string {
-    return `Status: ${response.status}, Message: ${response.message}, Data: ${JSON.stringify(response.data)}`;
+    return `
+    Status: ${response.status}, 
+    Message: ${response.message}, 
+    Data: ${response.data}`;
 }
 
 
@@ -44,4 +47,16 @@ console.log(res1);
 
 const res2 = handleResponse(response2)
 console.log(res2);
+
+// simple generic 
+
+function simple<T>(param: T): T {
+    return param
+}
+
+const a = simple(20)
+const b = simple("mirja abbas")
+console.log(a);
+console.log(b);
+
 

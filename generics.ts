@@ -55,8 +55,72 @@ function simple<T>(param: T): T {
 }
 
 const a = simple(20)
-const b = simple("mirja abbas")
+const b = simple("Mirja Abbas")
 console.log(a);
 console.log(b);
 
 
+// Array Generic 
+
+function ArrayGeneric<T>(array: T[]): T[] {
+    return array
+}
+
+const arr = ArrayGeneric([1, 2, 3])
+const arry = ArrayGeneric(["abbas", "Galib", "Motin"])
+console.log(arr);
+console.log(arry);
+
+// Multiple Generics 
+
+function multipleGenerics<T, U>(a: T, b: U): [T, U] {
+    return [a, b]
+}
+
+const Multiple = multipleGenerics("Billal", 20)
+console.log(Multiple);
+
+
+// Generic Interface
+
+
+interface dnterface<T> {
+    data: T;
+    success: boolean
+}
+
+const res: dnterface<{ name: string, age: number }> = {
+    data: { name: "aswat", age: 20 },
+    success: true
+}
+
+// Constraint
+function Constraint<T extends { length: number }>(params: T): T {
+    return params
+}
+
+const f = Constraint("Hellow")
+const g = Constraint([123])
+console.log(f);
+console.log(g);
+
+// Real-Life Scenario
+type User = {
+    name: string,
+    email: string,
+    password: string
+}
+
+const getData = async<T>(url: string): Promise<T> => {
+    const response = await fetch(url);
+    const data: T = await response.json()
+    return data
+}
+
+const main = async (): Promise<void> => {
+    const user = await getData<User>("https://jsonplaceholder.typicode.com/users/1")
+    console.log(user);
+
+}
+
+main()
